@@ -1,5 +1,3 @@
-### EX NO : 04
-### DATE  : 05.05.2022
 # <p align="center">Animal feeding Phase-I<p/>
 
 ## Aim: 
@@ -99,6 +97,41 @@ public class MoveForward : MonoBehaviour
     }
 }
 
+```
+### SPAWN MANAGER
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpanManager : MonoBehaviour
+{
+    public GameObject[] animalPrefabs;
+    public float spawnX = 20, spawnz = 20;
+    public float startDelay = 2;
+    public float spawnInterval = 1.5f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval); 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       /* if (Input.GetKeyDown(KeyCode.S))
+        {
+            SpawnRandomInterval();
+        }*/
+    }
+    void SpawnRandomInterval()
+    {
+        int animalIndex = Random.Range(0, animalPrefabs.Length);
+        Vector3 spawnpos = new Vector3(Random.Range(-spawnX, 0, spawnz));
+        Instantiate(animalPrefabs[animalIndex], spawnpos, animalPrefabs[animalIndex].transform.rotation);
+    }
+}
 ```
 ## Output:
 ![Screenshot (54)](https://user-images.githubusercontent.com/75235488/173235243-fbd83cb0-0991-4245-bc4c-05f3e8cf9096.png)
